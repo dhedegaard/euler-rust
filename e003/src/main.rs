@@ -28,7 +28,6 @@ fn eratosthenes(cap: u64) -> Vec<u64> {
             result.push(*key)
         }
     }
-    println!("ERA END");
     result
 }
 
