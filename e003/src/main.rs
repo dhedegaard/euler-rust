@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::time::SystemTime;
 
 /// Returns a vector of prime numbers up to the cap, the numbers are not sorted in any way.
 fn eratosthenes(cap: u64) -> Vec<u64> {
@@ -31,7 +32,7 @@ fn eratosthenes(cap: u64) -> Vec<u64> {
     result
 }
 
-/// Finds and returns the larges primefactor for a given number, returns None if no number was found.
+/// Finds and returns the larges primefactor for a given number, if one is found.
 fn find_largest_primefactor(number: u64) -> Option<u64> {
     let mut primes = eratosthenes(number);
     // Sort high -> low
@@ -45,8 +46,10 @@ fn find_largest_primefactor(number: u64) -> Option<u64> {
 }
 
 fn main() {
+    let before = SystemTime::now();
     match find_largest_primefactor(600851475143) {
         Some(x) => println!("Highest prime factor is: {}", x),
         None    => println!("No prime factor found"),
     }
+    println!("Took: {:?}", SystemTime::now().duration_since(before));
 }
