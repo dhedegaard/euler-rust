@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e  # Fail on first error.
 for fname in $(
   find . \
     -maxdepth 1 \
@@ -8,6 +9,6 @@ for fname in $(
 do
   echo "*** $fname ***"
   cd $fname
-  cargo run -q
+  cargo run
   cd ..
 done
