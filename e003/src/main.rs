@@ -51,5 +51,6 @@ fn main() {
         Some(x) => println!("Highest prime factor is: {}", x),
         None    => println!("No prime factor found"),
     }
-    println!("Took: {:?}", SystemTime::now().duration_since(before));
+    let duration = SystemTime::now().duration_since(before).unwrap();
+    println!("Took: {}.{:03} seconds", duration.as_secs(), duration.subsec_nanos() / 1_000_000);
 }
