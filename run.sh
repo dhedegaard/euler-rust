@@ -9,6 +9,6 @@ for fname in $(
 do
   echo "*** $fname ***"
   cd $fname
-  cargo run
+  cargo run -q
   cd ..
 done
