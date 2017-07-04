@@ -2,7 +2,7 @@ extern crate bit_vec;
 use bit_vec::BitVec;
 
 /// Returns a vector of prime numbers up to the cap, the numbers are not sorted in any way.
-fn eratosthenes(cap: u64) -> Vec<u64> {
+fn eratosthenes(cap: u64) -> BitVec {
     let cap_sqrt = (cap as f64).sqrt() as u64;
     // Start by allocating a map with all integer values up to cap with a value of true.
     let mut vec = BitVec::from_elem(cap_sqrt as usize, true);
@@ -19,27 +19,21 @@ fn eratosthenes(cap: u64) -> Vec<u64> {
             j += i;
         }
     }
-    // Take all the true values and aggregate them in a vector.
-    let mut result = vec![];
-    for key in 2..cap_sqrt {
-        if vec.get(key as usize).unwrap() {
-            result.push(key)
-        }
-    }
-    result
+    vec
 }
 
 /// Finds and returns the larges primefactor for a given number, if one is found.
 fn find_largest_primefactor(number: u64) -> Option<u64> {
-    let mut primes = eratosthenes(number);
-    // Sort high -> low
-    primes.sort_by(|a, b| b.cmp(a));
-    for i in primes {
-        if number % i == 0 {
-            return Some(i);
+    let primes = eratosthenes(number);
+    // Iterate high -> low
+    println!("len: {}", primes.len());
+    match (2..primes.len())
+        .rev()
+        .filter(|e| primes[*e] && number % (*e as u64) == 0)
+        .next() {
+            Some(x) => Some(x as u64),
+            None => None,
         }
-    }
-    None
 }
 
 fn main() {
