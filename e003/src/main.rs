@@ -31,9 +31,9 @@ fn find_largest_primefactor(number: u64) -> Option<u64> {
         .rev()
         .filter(|e| primes[*e] && number % (*e as u64) == 0)
         .next() {
-            Some(x) => Some(x as u64),
-            None => None,
-        }
+        Some(x) => Some(x as u64),
+        None => None,
+    }
 }
 
 fn main() {
