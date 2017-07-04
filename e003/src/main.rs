@@ -26,7 +26,6 @@ fn eratosthenes(cap: u64) -> BitVec {
 fn find_largest_primefactor(number: u64) -> Option<u64> {
     let primes = eratosthenes(number);
     // Iterate high -> low
-    println!("len: {}", primes.len());
     match (2..primes.len())
         .rev()
         .filter(|e| primes[*e] && number % (*e as u64) == 0)
