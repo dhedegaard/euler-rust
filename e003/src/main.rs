@@ -1,6 +1,5 @@
 extern crate bit_vec;
 use bit_vec::BitVec;
-use std::time::SystemTime;
 
 /// Returns a vector of prime numbers up to the cap, the numbers are not sorted in any way.
 fn eratosthenes(cap: u64) -> Vec<u64> {
@@ -44,15 +43,8 @@ fn find_largest_primefactor(number: u64) -> Option<u64> {
 }
 
 fn main() {
-    let before = SystemTime::now();
     match find_largest_primefactor(600851475143) {
-        Some(x) => println!("Highest prime factor is: {}", x),
+        Some(x) => println!("{}", x),
         None => println!("No prime factor found"),
     }
-    let duration = SystemTime::now().duration_since(before).unwrap();
-    println!(
-        "Took: {}.{:03} seconds",
-        duration.as_secs(),
-        duration.subsec_nanos() / 1_000_000
-    );
 }
