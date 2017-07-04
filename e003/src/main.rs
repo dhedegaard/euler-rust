@@ -7,11 +7,11 @@ fn eratosthenes(cap: u64) -> Vec<u64> {
     let cap_sqrt = (cap as f64).sqrt() as u64;
     // Start by allocating a map with all integer values up to cap with a value of true.
     let mut vec = BitVec::from_elem(cap_sqrt as usize, true);
-    // For each 
+    // For each
     for i in 2..cap_sqrt {
         // Ignore positions already marked as false.
         if !vec.get(i as usize).unwrap() {
-            continue
+            continue;
         }
         // Otherwise, mark positions after this one, step by "i" each time.
         let mut j = i * 2;
@@ -21,7 +21,7 @@ fn eratosthenes(cap: u64) -> Vec<u64> {
         }
     }
     // Take all the true values and aggregate them in a vector.
-    let mut result = vec!();
+    let mut result = vec![];
     for key in 2..cap_sqrt {
         if vec.get(key as usize).unwrap() {
             result.push(key)
@@ -37,7 +37,7 @@ fn find_largest_primefactor(number: u64) -> Option<u64> {
     primes.sort_by(|a, b| b.cmp(a));
     for i in primes {
         if number % i == 0 {
-            return Some(i)
+            return Some(i);
         }
     }
     None
@@ -47,8 +47,12 @@ fn main() {
     let before = SystemTime::now();
     match find_largest_primefactor(600851475143) {
         Some(x) => println!("Highest prime factor is: {}", x),
-        None    => println!("No prime factor found"),
+        None => println!("No prime factor found"),
     }
     let duration = SystemTime::now().duration_since(before).unwrap();
-    println!("Took: {}.{:03} seconds", duration.as_secs(), duration.subsec_nanos() / 1_000_000);
+    println!(
+        "Took: {}.{:03} seconds",
+        duration.as_secs(),
+        duration.subsec_nanos() / 1_000_000
+    );
 }
