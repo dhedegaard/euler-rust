@@ -16,7 +16,7 @@ impl Iterator for Fibonacci {
 }
 
 fn fibo() -> Fibonacci {
-    Fibonacci{curr: 1, next: 0}
+    Fibonacci { curr: 1, next: 0 }
 }
 
 fn main() {
@@ -25,7 +25,7 @@ fn main() {
         if i > 4_000_000 {
             break;
         }
-        if i %2 == 0{
+        if i % 2 == 0 {
             sum += i;
         }
     }
