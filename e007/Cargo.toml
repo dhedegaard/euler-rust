@@ -1,0 +1,6 @@
+[package]
+name = "e007"
+version = "0.1.0"
+authors = ["Dennis Hedegaard <dennis@dhedegaard.dk>"]
+
+[dependencies]
